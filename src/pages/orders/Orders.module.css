@@ -1,0 +1,31 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.searchInputContainer {
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.shipped {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status.delivered {
+  background-color: #d4edda;
+  color: #155724;
+}

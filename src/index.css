@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --bodyBg: #1f1f1f;
+  --inputBg: #2e3d3e;
+  --mainBtnBg: #049ea0;
+  --mainBtnText: #ffffff;
+  --primaryBtnBg: #049ea0;
+  --primaryBtnText: #ffffff;
+  --deleteBtnBg: #8e0909;
+  --deleteBtnText: #ffffff;
+  --inputText: #ffffff;
+  --tableHead: #000000;
+  --secTextColor: #047c7d;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: var(--bodyBg);
+  font-family: "Poppins", sans-serif;
+}
+
+section {
+  width: 100%;
+}
+
+.deleteBtn {
+  cursor: pointer;
+  color: var(--deleteBtnText);
+  transition: all 0.5s;
+  background: var(--deleteBtnBg);
+}
+
+.deleteBtn:hover {
+  scale: 1.1;
+}
+
+.editBtn {
+  cursor: pointer;
+  color: var(--primaryBtnText);
+  transition: all 0.5s;
+  background: var(--primaryBtnBg);
+}
+
+.editBtn:hover {
+  scale: 1.1;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--inputBg);
+  color: var(--inputText);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.input:focus {
+  border: 2px solid var(--mainBtnBg);
+}
+
+.input::placeholder {
+  color: #ffffffae;
+}
+
+.btn {
+  background: var(--primaryBtnBg);
+  color: var(--primaryBtnText);
+}
+
+.secBtn {
+  background: var(--inputBg);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+.secBtn:hover {
+  scale: 1.1;
+  cursor: pointer;
+  color: var(--primaryBtnBg);
+  box-shadow: 0 0 5px var(--primaryBtnBg);
+}
+
+.active {
+  background-color: var(--inputBg);
+}
+
+.titleText {
+  color: white;
+  font-weight: 700;
+  font-size: clamp(20px, 5vw, 30px);
+  word-break: break-word;
+}
+
+/* SweetAlert2 Custom Styles */
+.swal2-popup {
+  background-color: var(--inputBg) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--primaryBtnBg) !important;
+}
+
+.swal2-title,
+.swal2-html-container {
+  color: white !important;
+}
+
+.swal2-confirm,
+.swal2-deny {
+  background-color: var(--primaryBtnBg) !important;
+  color: var(--primaryBtnText) !important;
+  border: none !important;
+  padding: 8px 20px !important;
+  border-radius: 5px !important;
+  transition: all 0.3s !important;
+}
+
+.swal2-cancel {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border: none !important;
+  padding: 8px 20px !important;
+  border-radius: 5px !important;
+  transition: all 0.3s !important;
+}
+
+.swal2-confirm:hover,
+.swal2-deny:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.swal2-actions {
+  gap: 10px !important;
+}
+
+/* ===== Table Container ===== */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ===== Table Base ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  color: #f5f5f5;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  table-layout: fixed;
+}
+
+/* ===== Table Head ===== */
+.table thead {
+  border-radius: 10px 10px 0 0;
+}
+
+.table thead tr {
+  background-color: var(--inputBg);
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+}
+
+.table th {
+  padding: 12px 14px;
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--primaryBtnBg);
+}
+
+/* ===== Table Body ===== */
+.table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--inputBg);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* ... لو النص طويل */
+  white-space: nowrap;
+  /* النص في سطر واحد */
+  max-width: 200px;
+  /* أقصى عرض لأي خلية */
+}
+
+/* ===== Hover Effect ===== */
+.table tbody tr {
+  transition: all 0.2s ease-in-out;
+}
+
+.table tbody tr:hover {
+  background: var(--inputBg);
+  cursor: pointer;
+}
+
+.table .actions button {
+
+  margin: 0 5px;
+}
+
+/* ===== Responsive (Mobile) ===== */
+@media screen and (max-width: 900px) {
+  .table thead {
+    display: none;
+    /* اخفي الترويسة */
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+    background-color: var(--inputBg);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-bottom: 1px solid var(--inputBg);
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-overflow: ellipsis;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #f5f5f5;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .table .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-items: center;
+  }
+}
+
+/* ===== Pagination ===== */
+.pagination {
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: white;
+}
+
+.pagination span span {
+  color: var(--primaryBtnBg);
+}
+
+.pagination button:hover {
+  scale: 1;
+  box-shadow: none;
+}

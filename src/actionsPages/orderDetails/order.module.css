@@ -1,0 +1,69 @@
+.orderDetails {
+  padding: 10px 0;
+  max-width: 100%;
+}
+
+.orderDetails .header h6 {
+  color: var(--secTextColor);
+  margin: 10px 0;
+  font-weight: 300;
+  font-size: clamp(10px, 2vw, 18px);
+}
+
+.orderDetails .header h6 span {
+  font-weight: 400;
+  font-size: clamp(15px, 2vw, 20px);
+  color: white;
+}
+
+.orderDetails .header h3 {
+  font-size: clamp(18px, 2.5vw, 24px);
+  margin: 10px 0;
+  max-width: 100%;
+}
+
+.orderDetails .header p {
+  color: var(--secTextColor);
+  font-size: clamp(13px, 1.5vw, 16px);
+}
+
+/* ===== Customer Info Grid ===== */
+.customerGrid {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  color: white;
+  gap: 20px 100px;
+}
+
+.customerGrid div {
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 10px 0;
+  width: fit-content;
+  min-width: 250px;
+  position: relative;
+}
+
+.customerGrid span {
+  display: block;
+  color: var(--secTextColor);
+  font-size: clamp(14px, 1.5vw, 16px);
+  margin-bottom: 5px;
+}
+
+.customerGrid div p {
+  color: white;
+  font-size: clamp(15px, 1.5vw, 18px);
+  word-break: break-word;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .customerGrid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .customerGrid div {
+    width: 80%;
+  }
+}

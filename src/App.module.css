@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px;
+  position: relative;
+  z-index: 10;
+}
+
+.background_wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 5;
+
+}
+
+.background_overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(4, 158, 160, 0.15) 0%,
+    rgba(3, 110, 120, 0.1) 40%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  opacity: 0.8;
+  pointer-events: none;
+  filter: blur(30px);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive margin for smaller screens */
+@media (max-width: 800px) {
+  .mainContent {
+    margin-left: 80px;
+  }
+}

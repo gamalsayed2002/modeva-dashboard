@@ -1,0 +1,32 @@
+.searchInputContainer {
+  width: 100%;
+  position: relative;
+  height: 40px;
+  margin: 10px 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.searchInputContainer div {
+  flex: 1;
+}
+.searchInputContainer div input {
+  width: 100%;
+  height: 100%;
+  padding-left: 40px;
+}
+.searchInputContainer .icon {
+  color: rgba(255, 255, 255, 0.71);
+  position: absolute;
+  top: 40%;
+  transform: translateY(-30%);
+  left: 10px;
+  font-size: clamp(12px, 2vw, 16px);
+}
+.searchInputContainer button {
+  outline: none;
+  border: none;
+  padding: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,200 @@
+.productAcions {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* منع أي سكرول أفقي */
+}
+
+.productAcions form {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.productAcions .fieldsContainer {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px 25px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.productAcions .fieldsContainer .inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.productAcions .fieldsContainer .inputContainer input,
+.productAcions .fieldsContainer .inputContainer select,
+.productAcions .fieldsContainer .inputContainer textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+.productAcions .fieldsContainer .inputContainer label {
+  color: white;
+  width: 100%;
+  max-width: 100%;
+}
+
+.productAcions .ImagesContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.productAcions .ImagesContainer input {
+  display: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+.productAcions .ImagesContainer label {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.productAcions .ImagesContainer label button {
+  outline: none;
+  border: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.productAcions .ImagesContainer label button:hover {
+  box-shadow: none;
+  scale: 1;
+}
+
+.productAcions .ImagesContainer .mainImageContainer,
+.productAcions .ImagesContainer .subImagesContainer .subImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+.productAcions .ImagesContainer .subImagesContainer .subImageContainer {
+}
+.productAcions
+  .ImagesContainer
+  .subImagesContainer
+  .subImageContainer
+  .deleteBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 0 0 5px;
+  font-size: 40px;
+  cursor: pointer;
+  background: none;
+  color: var(--deleteBtnBg);
+}
+.productAcions .ImagesContainer .mainImageContainer img,
+.productAcions .ImagesContainer .subImagesContainer .subImageContainer img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* صندوق الصور */
+.productAcions .ImagesContainer .mainImageContainer,
+.productAcions .ImagesContainer .subImageContainer {
+  border: 2px dashed var(--inputBg);
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+  max-width: 600px;
+  min-height: 300px;
+  box-sizing: border-box;
+}
+
+.productAcions .ImagesContainer .subImagesContainer {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+.productAcions .ImagesContainer .subImagesContainer .subImageContainer {
+  max-width: 500px;
+}
+
+.productAcions form .btn {
+  border: none;
+  outline: none;
+  padding: 10px;
+  transition: 0.5s;
+  width: fit-content;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 15px;
+}
+.productAcions form .btn:hover {
+  background: var(--inputBg);
+  color: white;
+  scale: 1.1;
+  box-shadow: 0 0 5px var(--primaryBtnBg);
+}
+
+
+
+.productAcions .tag {
+  display: flex;
+  align-items: center;
+  background-color: var(--primaryBtnBg);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.productAcions .tag .removeTag {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productAcions .tagInputContainer {
+  display: flex;
+  margin-top: 10px;
+}
+
+/* ريسبونسيف */
+@media (max-width: 460px) {
+  .productAcions .fieldsContainer {
+    grid-template-columns: 1fr; /* عمود واحد فقط */
+  }
+
+  .productAcions .ImagesContainer .mainImageContainer,
+  .productAcions .ImagesContainer .subImageContainer {
+    max-width: 100%; /* في الموبايل تاخد العرض كله */
+  }
+
+  .productAcions form .btn {
+    max-width: 100%; /* زرار ياخد العرض كله */
+  }
+}

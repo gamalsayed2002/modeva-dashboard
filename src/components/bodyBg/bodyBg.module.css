@@ -1,0 +1,30 @@
+.blobs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* خلف كل شيء */
+  }
+  
+  .blob {
+    position: absolute;
+    background: #049ea0;
+    opacity: 0.15;
+    border-radius: 50%;
+    filter: blur(100px);
+    transition: all 1s ease-in-out;
+    animation: float 10s ease-in-out infinite alternate;
+  }
+  
+  /* حركة خفيفة */
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+    }
+    100% {
+      transform: translateY(-20px) translateX(20px);
+    }
+  }
+  
