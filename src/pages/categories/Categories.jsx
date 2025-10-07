@@ -67,6 +67,7 @@ export default function Categories() {
             <tr>
               <th>Category Name</th>
               <th>Arabic Name</th>
+              <th>Image</th>
               <th>Created</th>
               <th>Actions</th>
             </tr>
@@ -85,6 +86,21 @@ export default function Categories() {
                       {category?.nameAr || "No name"}
                     </div>
                   </td>             
+                  <td data-label="Image">
+                    <div className={styles.categoryName}>
+                      {category?.image && (
+                        <img
+                          src={`${import.meta.env.VITE_BASE_IMAGE_URL}${category.image}`}
+                          alt={category.name?.en || "Category"}
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            objectFit: "cover",
+                          }}
+                        />
+                      )}
+                    </div>
+                  </td>
                   <td data-label="Created">
                     {new Date(category.createdAt).toLocaleDateString()}
                   </td>
