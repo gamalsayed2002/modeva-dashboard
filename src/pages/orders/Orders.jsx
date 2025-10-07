@@ -5,6 +5,7 @@ import { ordersStore } from "../../stores/ordersStore";
 
 import MainSearchInput from "../../components/mainSearchInput/MainSearchInput";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Orders() {
   const { orders, getOrders, searchOrders, totalPages } = ordersStore();
@@ -22,6 +23,16 @@ export default function Orders() {
       getOrders();
     }
   }, [statusFilter, getOrders, searchOrders]);
+
+  const showPaymentImage = (imageUrl) => {
+    Swal.fire({
+      imageUrl: `${import.meta.env.VITE_BASE_IMAGE_URL}${imageUrl}`,
+      imageAlt: "Payment proof",
+      title: "Payment Proof",
+      showCloseButton: true,
+      showConfirmButton: false,
+    });
+  };
 
   return (
     <section>
@@ -51,12 +62,13 @@ export default function Orders() {
       <table className="table">
         <thead>
           <tr>
-            <th>Order ID</th>
+         
             <th>User</th>
             <th>Products</th>
             <th>Total Amount</th>
-            <th>Status</th>
+            <th>phone</th>
             <th>Date</th>
+            <th>Payment Proof</th>
           </tr>
         </thead>
 
@@ -69,25 +81,40 @@ export default function Orders() {
                   navigate(`/orders/${order._id}`);
                 }}
               >
-                <td data-label="Order ID">{order._id?.substring(0, 8)}...</td>
+
                 <td data-label="User">{order.user?.name || "N/A"}</td>
                 <td data-label="Products">
                   {order.products?.length || 0} items
                 </td>
                 <td data-label="Total Amount">${order.totalAmount || 0}</td>
-                <td data-label="Status">
-                  <span className={`status ${order.status || "N/A"}`}>
-                    {order.status || "N/A"}
+                <td data-label="phone">
+                  <span>
+                    {order.user?.phone || "N/A"}
                   </span>
                 </td>
                 <td data-label="Date">
                   {new Date(order.createdAt).toLocaleDateString()}
                 </td>
+                <td data-label="Payment Proof">
+                  {order.paymentImage ? (
+                    <img 
+                      src={`${import.meta.env.VITE_BASE_IMAGE_URL}${order.paymentImage}`} 
+                      alt="Payment proof" 
+                      style={{ width: "50px", height: "50px", cursor: "pointer", objectFit: "cover" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        showPaymentImage(order.paymentImage);
+                      }}
+                    />
+                  ) : (
+                    "N/A"
+                  )}
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>
+              <td colSpan="7" style={{ textAlign: "center" }}>
                 No orders found
               </td>
             </tr>

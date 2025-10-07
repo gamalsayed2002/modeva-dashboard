@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ordersStore } from "../../stores/ordersStore";
 import Loading from "./../../components/loadingPage/Loading";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 export default function OrderDetails() {
   const navigate = useNavigate();
@@ -76,7 +77,9 @@ export default function OrderDetails() {
             <th>Product</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>image</th>
             <th>Total</th>
+
           </tr>
         </thead>
         <tbody>
@@ -89,12 +92,27 @@ export default function OrderDetails() {
             >
               <td data-label="Product Name">
                 <div>
-                  <p>{item.product?.name?.en || "N/A"}</p>
+                  <p>{item.product?.name || "N/A"}</p>
                 </div>
               </td>
               <td data-label="Price">{item.price || 0} EGP</td>
               <td data-label="Quantity">{item.quantity || 0}</td>
+              <td data-label="image">
+                {item.product?.mainImage && (
+                  <img
+                    src={`${import.meta.env.VITE_BASE_IMAGE_URL}${item.product.mainImage}`}
+                    alt={item.product.name || "Product"}
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover",
+                      borderRadius: "100%",
+                    }}
+                  />
+                )}
+              </td>
               <td data-label="Total">{item.price * item.quantity || 0} EGP</td>
+    
             </tr>
           ))}
         </tbody>
