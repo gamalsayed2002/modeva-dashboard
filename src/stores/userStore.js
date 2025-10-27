@@ -12,17 +12,21 @@ export const userStore = create((set, get) => ({
         email,
         password,
       });
+      if(res.data.user.role!=="admin"){
+        toast.error("You are not authorized to access this page");
+        return {success:false}
+      }
       set({ user: res.data.user, loading: false });
-      toast.success("Login successful");
-      // Return success status to handle navigation in the component
+      toast.success(`welcom ${res.data.user.name}`);
       return { success: true };
     } catch (error) {
-      console.log(error);
       const errorMessage =
         error.response?.data?.message || "Something went wrong";
       toast.error(errorMessage);
       set({ loading: false });
       return { success: false, error: errorMessage };
+    } finally {
+      set({ loading: false });
     }
   },
   checkAuth: async () => {
@@ -32,7 +36,6 @@ export const userStore = create((set, get) => ({
         withCredentials: true,
       });
       set({ user: data.user, loading: false });
-     
     } catch (err) {
       if (err.response && err.response.status === 401) {
         // حاول تعمل refresh

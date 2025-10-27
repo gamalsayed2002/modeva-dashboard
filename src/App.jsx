@@ -30,6 +30,7 @@ function App() {
         <div className={styles.background_wrapper}>
           <div className={styles.background_overlay}></div>
           <Login />
+          <Toaster />
         </div>
       </>
     );
@@ -49,6 +50,7 @@ function App() {
           <div className={styles.background_overlay}></div>
         </div>
         <Routes>
+          
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductAcions />} />

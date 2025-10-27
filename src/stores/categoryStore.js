@@ -75,7 +75,9 @@ createCategory: async (formValues) => {
             <div class="form-group" style="margin-top: 15px">
               <label for="image">Upload Image</label>
               <input type="file" id="image" class="swal2-input" accept="image/*" />
-              <img id="preview" style="margin-top:10px; max-width:100%; display:none; border-radius:8px;" />
+              <div id="preview-container" style="margin-top: 10px; display: flex; justify-content: center;">
+                <img id="preview" style="max-width: 100%; max-height: 200px; display: none; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              </div>
             </div>
           </div>
         `,
@@ -98,6 +100,8 @@ createCategory: async (formValues) => {
           // ✅ معاينة الصورة عند اختيارها
           const imageInput = document.getElementById("image");
           const preview = document.getElementById("preview");
+          const previewContainer = document.getElementById("preview-container");
+          
           imageInput.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (file) {
@@ -105,21 +109,50 @@ createCategory: async (formValues) => {
               reader.onload = (ev) => {
                 preview.src = ev.target.result;
                 preview.style.display = "block";
+                previewContainer.style.display = "flex";
               };
               reader.readAsDataURL(file);
             } else {
               preview.style.display = "none";
+              previewContainer.style.display = "none";
             }
           });
 
           // ✅ تنسيق CSS
           const style = document.createElement("style");
           style.textContent = `
-            .swal2-form { text-align: left; width: 100%; padding: 0 10px; }
-            .form-group { margin-bottom: 1rem; width: 100%; }
-            .form-group label { display:block; margin-bottom:.5rem; font-weight:500; color:#555; }
-            .swal2-input { width:100%!important; margin:.5rem 0!important; border:1px solid #ddd!important; border-radius:4px!important; padding:8px 12px!important; }
-            .swal2-input:focus { border-color: var(--primaryBtnBg)!important; box-shadow:0 0 0 2px rgba(66,153,225,.2)!important; }
+            .swal2-form { 
+              text-align: left; 
+              width: 100%; 
+              padding: 0 10px; 
+            }
+            .form-group { 
+              margin-bottom: 1rem; 
+              width: 100%; 
+            }
+            .form-group label { 
+              display: block; 
+              margin-bottom: 0.5rem; 
+              font-weight: 500; 
+              color: #333; 
+            }
+            .swal2-input { 
+              width: 100% !important; 
+              margin: 0.5rem 0 !important; 
+              border: 1px solid #ddd !important; 
+              border-radius: 6px !important; 
+              padding: 10px 12px !important; 
+              font-size: 14px;
+            }
+            .swal2-input:focus { 
+              border-color: #3085d6 !important; 
+              box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2) !important; 
+              outline: none;
+            }
+            #preview-container {
+              min-height: 100px;
+              align-items: center;
+            }
           `;
           document.head.appendChild(style);
         },
@@ -170,6 +203,7 @@ updateCategory: async (categoryId, updateData) => {
       throw error;
     }
   }
+  console.log(category)
 
   if (!updateData) {
     const { value: formValues } = await Swal.fire({
@@ -188,9 +222,16 @@ updateCategory: async (categoryId, updateData) => {
             <label for="image">Change Image</label>
             <input type="file" id="image" class="swal2-input" accept="image/*" />
             <div style="margin-top:10px">
-              <p>Current Image:</p>
-              <img src="${import.meta.env.VITE_BASE_IMAGE_URL}/${category.image}" id="currentPreview" style="max-width:100%; border-radius:8px;" />
-              <img id="preview" style="margin-top:10px; max-width:100%; display:none; border-radius:8px;" />
+              <p style="font-weight: 500; color: #333;">Current Image:</p>
+              <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+                <img src="${import.meta.env.VITE_BASE_IMAGE_URL}${category.image}" 
+                     id="currentPreview" 
+                     style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              </div>
+              <p style="font-weight: 500; color: #333; text-align: center; margin-bottom: 10px;">New Image Preview:</p>
+              <div id="preview-container" style="display: flex; justify-content: center;">
+                <img id="preview" style="max-width: 100%; max-height: 200px; display: none; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              </div>
             </div>
           </div>
         </div>
@@ -213,6 +254,8 @@ updateCategory: async (categoryId, updateData) => {
         // ✅ معاينة الصورة الجديدة
         const imageInput = document.getElementById("image");
         const preview = document.getElementById("preview");
+        const previewContainer = document.getElementById("preview-container");
+        
         imageInput.addEventListener("change", (e) => {
           const file = e.target.files[0];
           if (file) {
@@ -220,12 +263,52 @@ updateCategory: async (categoryId, updateData) => {
             reader.onload = (ev) => {
               preview.src = ev.target.result;
               preview.style.display = "block";
+              previewContainer.style.display = "flex";
             };
             reader.readAsDataURL(file);
           } else {
             preview.style.display = "none";
+            previewContainer.style.display = "none";
           }
         });
+
+        // ✅ تنسيق CSS
+        const style = document.createElement("style");
+        style.textContent = `
+          .swal2-form { 
+            text-align: left; 
+            width: 100%; 
+            padding: 0 10px; 
+          }
+          .form-group { 
+            margin-bottom: 1rem; 
+            width: 100%; 
+          }
+          .form-group label { 
+            display: block; 
+            margin-bottom: 0.5rem; 
+            font-weight: 500; 
+            color: #333; 
+          }
+          .swal2-input { 
+            width: 100% !important; 
+            margin: 0.5rem 0 !important; 
+            border: 1px solid #ddd !important; 
+            border-radius: 6px !important; 
+            padding: 10px 12px !important; 
+            font-size: 14px;
+          }
+          .swal2-input:focus { 
+            border-color: #3085d6 !important; 
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2) !important; 
+            outline: none;
+          }
+          #preview-container {
+            min-height: 100px;
+            align-items: center;
+          }
+        `;
+        document.head.appendChild(style);
       },
     });
 
